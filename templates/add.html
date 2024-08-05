@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
 {% block title %}Add A New Cafe{% endblock %}
 
 {% block content %}
@@ -7,55 +8,7 @@
     <div class="col-sm-12 col-md-8">
 
       <h1>Add a new cafe into the database</h1>
-
-      <form method="post" action="{{ url_for('add_cafe') }}">
-
-        {{ form.csrf_token }}
-				<p>
-					{{ form.cafe.label }} <br> {{ form.cafe(size=30) }}
-					{% for err in form.cafe.errors %}
-					<span style="color:red">{{ err }}</span>
-					{% endfor %}
-				</p>
-				<p>
-					{{ form.cafe_location.label }} <br> {{ form.cafe_location(size=30) }}
-					{% for err in form.cafe_location.errors %}
-					<span style="color:red">{{ err }}</span>
-					{% endfor %}
-				</p>
-                <p>
-					{{ form.opening_time.label }} <br> {{ form.opening_time(size=30) }}
-					{% for err in form.opening_time.errors %}
-					<span style="color:red">{{ err }}</span>
-					{% endfor %}
-				</p>
-                <p>
-					{{ form.closing_time.label }} <br> {{ form.closing_time(size=30) }}
-					{% for err in form.closing_time.errors %}
-					<span style="color:red">{{ err }}</span>
-					{% endfor %}
-				</p>
-                <p>
-					{{ form.coffee_rating.label }} <br> {{ form.coffee_rating() }}
-					{% for err in form.coffee_rating.errors %}
-					<span style="color:red">{{ err }}</span>
-					{% endfor %}
-				</p>
-                <p>
-					{{ form.wifi.label }} <br> {{ form.wifi() }}
-					{% for err in form.wifi.errors %}
-					<span style="color:red">{{ err }}</span>
-					{% endfor %}
-				</p>
-                <p>
-					{{ form.power.label }} <br> {{ form.power() }}
-					{% for err in form.power.errors %}
-					<span style="color:red">{{ err }}</span>
-					{% endfor %}
-				</p>
-				{{ form.submit }}
-      </form>
-
+		{{ render_form(form, novalidate=True) }}
 	  <p class="space-above"><a href=" {{ url_for('cafes') }}">See all cafes</a></p>
 
     </div>
